@@ -15,7 +15,8 @@ class ElasticsearchClient:
     def _connect(self):
         return elasticsearch.Elasticsearch(
             hosts=[self.host],
-            http_auth=(self.user, self.password)
+            http_auth=(self.user, self.password),
+            send_get_body_as='POST'
         )
     
     def query(self, index, body):
