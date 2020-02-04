@@ -5,6 +5,10 @@ class MLTBase:
     
     def __init__(self, **kwargs):
         
+        es_config = kwargs.get('es_config')
+        pg_config = kwargs.get('pg_config')
+        gcs_config = kwargs.get('gcs_config')
+
         env = os.getenv('ENV')
 
         if env:
@@ -32,12 +36,6 @@ class MLTBase:
                     'BUCKET': os.getenv('BUCKET'),
                     'BLOB': os.getenv('BLOB')
                 }
-
-        else:
-
-            es_config = kwargs.get('es_config')
-            pg_config = kwargs.get('pg_config')
-            gcs_config = kwargs.get('gcs_config')
 
         if es_config:
             self.es_client = ElasticsearchClient(es_config)

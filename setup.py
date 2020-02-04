@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pynidus",
-    version="0.0.117",
+    version="0.0.119",
     author="Keurcien Luu",
     author_email="keurcien@appchoose.io",
     description="A handful of utilities.",
