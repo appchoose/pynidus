@@ -17,7 +17,7 @@ class MLTBase:
                     'PASSWORD': os.getenv('ES_PASSWORD')
                 }
 
-            if os.getenv('ES_HOST'):
+            if os.getenv('PG_HOST'):
                 
                 pg_config = {
                     'HOST': os.getenv('PG_HOST'),
@@ -26,10 +26,12 @@ class MLTBase:
                     'DATABASE': os.getenv('PG_DATABASE')
                 }
 
-            gcs_config = {
-                'BUCKET': os.getenv('BUCKET'),
-                'BLOB': os.getenv('BLOB')
-            }
+            if os.getenv('BUCKET'):
+                
+                gcs_config = {
+                    'BUCKET': os.getenv('BUCKET'),
+                    'BLOB': os.getenv('BLOB')
+                }
 
         else:
 
