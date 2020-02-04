@@ -9,18 +9,22 @@ class MLTBase:
 
         if env:
 
-            es_config = {
-                'HOST': os.getenv('ES_HOST'),
-                'USER': os.getenv('ES_USER'),
-                'PASSWORD': os.getenv('ES_PASSWORD')
-            }
+            if os.getenv('ES_HOST'):
+                
+                es_config = {
+                    'HOST': os.getenv('ES_HOST'),
+                    'USER': os.getenv('ES_USER'),
+                    'PASSWORD': os.getenv('ES_PASSWORD')
+                }
 
-            pg_config = {
-                'HOST': os.getenv('PG_HOST'),
-                'USER': os.getenv('PG_USER'),
-                'PASSWORD': os.getenv('PG_PASSWORD'),
-                'DATABASE': os.getenv('PG_DATABASE')
-            }
+            if os.getenv('ES_HOST'):
+                
+                pg_config = {
+                    'HOST': os.getenv('PG_HOST'),
+                    'USER': os.getenv('PG_USER'),
+                    'PASSWORD': os.getenv('PG_PASSWORD'),
+                    'DATABASE': os.getenv('PG_DATABASE')
+                }
 
             gcs_config = {
                 'BUCKET': os.getenv('BUCKET'),
