@@ -7,13 +7,16 @@ from google.cloud import storage
 class ElasticsearchClient:
     
     def __init__(self, config):
-        self.host = config.get('HOST'),
-        self.user = config.get('USER'),
+        self.host = config.get('HOST')
+        self.user = config.get('USER')
         self.password = config.get('PASSWORD')
         self._es = self._connect()
     
     def _connect(self):
-        return elasticsearch.Elasticsearch()
+        return elasticsearch.Elasticsearch(
+            hosts=[self.host],
+            http_auth=(self.user, self.password)
+        )
     
     def query(self, index, body):
         return self._es.search(index=index, body=body)
