@@ -13,7 +13,7 @@ def dependencies():
 
 setuptools.setup(
     name="pynidus",
-    version="0.0.119",
+    version="0.0.12",
     author="Keurcien Luu",
     author_email="keurcien@appchoose.io",
     description="A handful of utilities.",
