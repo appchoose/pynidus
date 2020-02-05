@@ -48,14 +48,13 @@ class GCSClient:
     
     def __init__(self, config):
         self.bucket = config.get('BUCKET')
-        self.blob = config.get('BLOB')
         self._client = self._connect()
         
     def _connect(self):
         return storage.Client()
     
-    def upload(self, obj):
-        self._client.get_bucket(self.bucket).get_blob(self.blob).upload_from_string(
+    def upload(self, blob, obj):
+        self._client.get_bucket(self.bucket).blob(blob).upload_from_string(
             data=json.dumps(obj),
             content_type='application/json'
         )

@@ -33,8 +33,7 @@ class MLTBase:
             if os.getenv('BUCKET'):
                 
                 gcs_config = {
-                    'BUCKET': os.getenv('BUCKET'),
-                    'BLOB': os.getenv('BLOB')
+                    'BUCKET': os.getenv('BUCKET')
                 }
 
         if es_config:
