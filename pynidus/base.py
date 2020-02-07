@@ -1,7 +1,6 @@
 import os
 from pynidus.clients import ElasticsearchClient, DatabaseClient, GCSClient
-from pynidus.errors import Logger
-
+from pynidus.errors import ErrorLogger
 
 class MLTBase:
     
