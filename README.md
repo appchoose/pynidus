@@ -8,3 +8,7 @@
 A handful of utilities predominantly made to develop basic Cloud Run services that connect to
 the same databases. Any configuration variable should be passed as an environment variable from Cloud Run. 
 
+### TODO
+
+- Try lighter base image
+- Get rid of env-based config variables and use config only
