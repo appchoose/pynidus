@@ -41,8 +41,8 @@ class MLTBase:
             if os.getenv('BUGSNAG_API_KEY'):
 
                 bugsnag_config = {
-                    'api_key': os.getenv('BUGSNAG_API_KEY'),
-                    'release_stage': os.getenv('BUGSNAG_API_KEY')
+                    'API_KEY': os.getenv('BUGSNAG_API_KEY'),
+                    'RELEASE_STAGE': os.getenv('BUGSNAG_RELEASE_STAGE')
                 }
 
         if es_config:
