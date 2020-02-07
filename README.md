@@ -12,3 +12,4 @@ the same databases. Any configuration variable should be passed as an environmen
 
 - Try lighter base image
 - Get rid of env-based config variables and use config only
+- Add a dev branch
