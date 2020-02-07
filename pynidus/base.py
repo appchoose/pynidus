@@ -55,7 +55,7 @@ class MLTBase:
             self.gcs_client = GCSClient(gcs_config)
 
         if bugsnag_config:
-            self.error_logger = Logger(bugsnag_config)
+            self.error_logger = ErrorLogger(bugsnag_config)
 
         
 
