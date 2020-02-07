@@ -53,6 +53,9 @@ class GCSClient:
     def _connect(self):
         return storage.Client()
     
+    def download(self, blob):
+        return self._client.get_bucket(self.bucket).get_blob(blob)
+
     def upload(self, blob, obj):
         self._client.get_bucket(self.bucket).blob(blob).upload_from_string(
             data=json.dumps(obj),
