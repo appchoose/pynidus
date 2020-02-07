@@ -1,5 +1,6 @@
 import os
 from pynidus.clients import ElasticsearchClient, DatabaseClient, GCSClient
+from pynidus.errors import Logger
 
 class MLTBase:
     
@@ -8,6 +9,7 @@ class MLTBase:
         es_config = kwargs.get('es_config')
         pg_config = kwargs.get('pg_config')
         gcs_config = kwargs.get('gcs_config')
+        bugsnag_config = kwargs.get('bugsnag_config')
 
         env = os.getenv('ENV')
 
@@ -36,6 +38,13 @@ class MLTBase:
                     'BUCKET': os.getenv('BUCKET')
                 }
 
+            if os.getenv('BUGSNAG_API_KEY'):
+
+                bugsnag_config = {
+                    'api_key': os.getenv('BUGSNAG_API_KEY'),
+                    'release_stage': os.getenv('BUGSNAG_API_KEY')
+                }
+
         if es_config:
             self.es_client = ElasticsearchClient(es_config)
 
@@ -44,6 +53,9 @@ class MLTBase:
 
         if gcs_config:
             self.gcs_client = GCSClient(gcs_config)
+
+        if bugsnag_config:
+            self.error_logger = Logger(bugsnag_config)
 
         
 
