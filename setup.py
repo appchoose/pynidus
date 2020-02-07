@@ -31,6 +31,7 @@ setuptools.setup(
         'pandas',
         'elasticsearch',
         'psycopg2',
-        'google-cloud-storage'
+        'google-cloud-storage',
+        'bugsnag'
     ]
 )
