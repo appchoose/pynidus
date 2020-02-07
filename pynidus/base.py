@@ -2,6 +2,7 @@ import os
 from pynidus.clients import ElasticsearchClient, DatabaseClient, GCSClient
 from pynidus.errors import Logger
 
+
 class MLTBase:
     
     def __init__(self, **kwargs):
