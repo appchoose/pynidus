@@ -13,7 +13,7 @@ def dependencies():
 
 setuptools.setup(
     name="pynidus",
-    version="0.0.126",
+    version="0.0.127",
     author="Keurcien Luu",
     author_email="keurcien@appchoose.io",
     description="A handful of utilities.",
@@ -28,7 +28,6 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires=[
-        'pandas',
         'elasticsearch',
         'psycopg2',
         'google-cloud-storage',

@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 import elasticsearch
 import psycopg2
 from google.cloud import storage
@@ -37,12 +36,21 @@ class DatabaseClient:
             user=self.user,
             password=self.password
         )
-    
+
     def query(self, query_):
-        con = self._connect()
-        table = pd.read_sql(sql=query_, con=con)
-        con.close()
-        return table
+        try:            
+            con = self._connect()
+            cursor = con.cursor()
+            cursor.execute(query_)
+            return cursor.fetchall()
+        
+        except:
+            raise
+            
+        finally:            
+            if con:
+                cursor.close()
+                con.close()
     
 class GCSClient:
     
