@@ -38,9 +38,12 @@ class DatabaseClient:
         )
 
     def query(self, query_):
+
+        conn = None
+
         try:            
-            con = self._connect()
-            cursor = con.cursor()
+            conn = self._connect()
+            cursor = conn.cursor()
             cursor.execute(query_)
             return cursor.fetchall()
         
@@ -48,9 +51,9 @@ class DatabaseClient:
             raise
             
         finally:            
-            if con:
+            if conn:
                 cursor.close()
-                con.close()
+                conn.close()
     
 class GCSClient:
     
