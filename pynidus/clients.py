@@ -24,18 +24,14 @@ class ElasticsearchClient:
 class DatabaseClient:
 
     def __init__(self, config):
-        self.host = config.get('HOST')
+        self.host = config.get('HOST', 'localhost')
         self.database = config.get('DATABASE')
         self.user = config.get('USER')
         self.password = config.get('PASSWORD')
+        self.port = config.get('PORT', 5432)
     
     def _connect(self):
-        return psycopg2.connect(
-            host=self.host,
-            database=self.database,
-            user=self.user,
-            password=self.password
-        )
+        return psycopg2.connect(**self.__dict__)
 
     def query(self, query_):
 
