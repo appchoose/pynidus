@@ -6,7 +6,7 @@
 [![PyPI](https://img.shields.io/pypi/v/pynidus.svg)](https://pypi.python.org/pypi)
 
 A handful of utilities predominantly made to develop basic Cloud Run services that connect to
-the same databases. Any configuration variable should be passed as an environment variable from Cloud Run. 
+the same databases. Any configuration variable should be passed as an environment variable from Cloud Run.
 
 ### TODO
 
