@@ -1,4 +1,5 @@
 import json
+import pickle
 import elasticsearch
 import psycopg2
 from google.cloud import storage
@@ -64,7 +65,15 @@ class GCSClient:
         return self._client.get_bucket(self.bucket).get_blob(blob)
 
     def upload(self, blob, obj):
-        self._client.get_bucket(self.bucket).blob(blob).upload_from_string(
-            data=json.dumps(obj),
-            content_type='application/json'
-        )
+        try:
+            self._client.get_bucket(self.bucket).blob(blob).upload_from_string(
+                data=json.dumps(obj),
+                content_type='application/json'
+            )
+        except TypeError:
+            self._client.get_bucket(self.bucket).blob(blob).upload_from_string(
+                data=pickle.dumps(obj),
+                content_type='application/octet-stream'
+            )
+        except Exception as e:
+            raise e
