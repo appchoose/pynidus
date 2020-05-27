@@ -2,7 +2,7 @@ import json
 import pickle
 import elasticsearch
 import psycopg2
-from google.cloud import storage
+from google.cloud.storage import Client
 
 class ElasticsearchClient:
     
@@ -59,7 +59,7 @@ class GCSClient:
         self._client = self._connect()
         
     def _connect(self):
-        return storage.Client()
+        return Client()
     
     def download(self, blob):
         return self._client.get_bucket(self.bucket).get_blob(blob)

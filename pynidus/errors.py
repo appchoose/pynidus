@@ -5,8 +5,8 @@ class ErrorLogger:
 
     def __init__(self, config):
 
-        self.api_key=config.get('API_KEY')
-        self.release_stage=config.get('RELEASE_STAGE')
+        self.api_key = config.get('API_KEY')
+        self.release_stage = config.get('RELEASE_STAGE')
             
         bugsnag.configure(
             api_key=self.api_key,
@@ -23,3 +23,8 @@ class ErrorLogger:
     def notify(self, e):
         bugsnag.notify(e)
         self.logger.error(e)
+    
+class ConfigError(Exception):
+
+    def __init__(self, message):
+        super().__init__(message)
