@@ -1,6 +1,7 @@
 import os
 from pynidus.clients import ElasticsearchClient, DatabaseClient, GCSClient
 from pynidus.errors import ErrorLogger
+from pynidus.ab import ABTest
 
 class MLTBase:
     
@@ -10,6 +11,7 @@ class MLTBase:
         pg_config = kwargs.get('pg_config')
         gcs_config = kwargs.get('gcs_config')
         bugsnag_config = kwargs.get('bugsnag_config')
+        ab_config = kwargs.get('ab_config')
 
         if es_config:
             self.es_client = ElasticsearchClient(es_config)
@@ -22,6 +24,9 @@ class MLTBase:
 
         if bugsnag_config:
             self.error_logger = ErrorLogger(bugsnag_config)
+
+        if ab_config:
+            self.ab = ABTest(config=ab_config)
 
         
 
