@@ -14,19 +14,19 @@ class MLTBase:
         ab_config = kwargs.get('ab_config')
 
         if es_config:
-            self.es_client = ElasticsearchClient(es_config)
+            self.es_client = ElasticsearchClient(**es_config)
 
         if pg_config:
-            self.pg_client = DatabaseClient(pg_config)
+            self.pg_client = DatabaseClient(**pg_config)
 
         if gcs_config:
-            self.gcs_client = GCSClient(gcs_config)
+            self.gcs_client = GCSClient(**gcs_config)
 
         if bugsnag_config:
-            self.error_logger = ErrorLogger(bugsnag_config)
+            self.error_logger = ErrorLogger(**bugsnag_config)
 
         if ab_config:
-            self.ab = ABTest(config=ab_config)
+            self.ab = ABTest(**ab_config)
 
         
 

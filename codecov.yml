@@ -3,3 +3,6 @@ comment: false
 coverage:
     precision: 2
     round: down
+
+codecov:
+    token: 1006e87e-4378-45af-b569-9edb4438c64d

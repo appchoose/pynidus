@@ -3,10 +3,10 @@ import bugsnag
 
 class ErrorLogger:
 
-    def __init__(self, config):
+    def __init__(self, api_key, release_stage):
 
-        self.api_key = config.get('API_KEY')
-        self.release_stage = config.get('RELEASE_STAGE')
+        self.api_key = api_key
+        self.release_stage = release_stage
             
         bugsnag.configure(
             api_key=self.api_key,

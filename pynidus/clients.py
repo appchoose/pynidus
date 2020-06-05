@@ -6,11 +6,30 @@ from google.cloud.storage import Client
 
 class ElasticsearchClient:
     
-    def __init__(self, config):
-        self.host = config.get('HOST')
-        self.user = config.get('USER')
-        self.password = config.get('PASSWORD')
-        self._es = self._connect()
+    def __init__(self, host, user, password):
+        """Instantiate an elasticsearch client.
+        
+        Parameters
+        ----------
+        host: str
+        user: str
+        password: str
+
+        Returns
+        -------
+        An elasticsearch client.
+        """
+
+        self.host = host
+        self.user = user
+        self.password = password
+        
+        try:
+            es = self._connect()
+            if es.ping():
+                self._es = es
+        except:
+            raise ConnectionError(f"Connection to {self.host} failed")
     
     def _connect(self):
         return elasticsearch.Elasticsearch(
@@ -18,18 +37,39 @@ class ElasticsearchClient:
             http_auth=(self.user, self.password),
             send_get_body_as='POST'
         )
-    
+        
     def query(self, index, body):
         return self._es.search(index=index, body=body)
          
 class DatabaseClient:
 
-    def __init__(self, config):
-        self.host = config.get('HOST', 'localhost')
-        self.database = config.get('DATABASE')
-        self.user = config.get('USER')
-        self.password = config.get('PASSWORD')
-        self.port = config.get('PORT', 5432)
+    def __init__(self, host, database, user, password, port=5432):
+        """Instantiate a PostgreSQL client.
+        
+        Parameters
+        ----------
+        host: str
+        database: str
+        user: str
+        password: str
+        port: int
+
+        Returns
+        -------
+        A PostgreSQL client.
+        """
+        
+        self.host = host
+        self.database = database
+        self.user = user
+        self.password = password
+        self.port = port
+        
+        try:
+            conn = self._connect()
+            conn.close()
+        except:
+            raise ConnectionError(f"Connection to {self.host} failed")
     
     def _connect(self):
         return psycopg2.connect(**self.__dict__)
@@ -54,8 +94,8 @@ class DatabaseClient:
     
 class GCSClient:
     
-    def __init__(self, config):
-        self.bucket = config.get('BUCKET')
+    def __init__(self, bucket):
+        self.bucket = bucket
         self._client = self._connect()
         
     def _connect(self):
