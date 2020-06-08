@@ -38,7 +38,12 @@ class TestClassifier(MLTBase):
         return self.pg_client.query("SELECT * FROM table LIMIT 1")
 
     def some_other_method_fetching_data_from_es(self):
-        return self.es_client.query("...")
+        return self.es_client.query(
+            index="...",
+            body={
+                "...": "..."
+            }
+        )
 
 testclassifier = TestClassifier(
     pg_config = config.get("postgresql"),
