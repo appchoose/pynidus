@@ -95,6 +95,16 @@ class DatabaseClient:
 class GCSClient:
     
     def __init__(self, bucket):
+        """Instantiate a Google Cloud Storage client.
+        
+        Parameters
+        ----------
+        bucket: str
+
+        Returns
+        -------
+        A Google Cloud Storage client.
+        """
         self.bucket = bucket
         self._client = self._connect()
         
