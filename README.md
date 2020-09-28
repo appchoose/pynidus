@@ -41,6 +41,18 @@ mc.pg_client["logs"].query("SELECT * FROM some_table")
 mc.pg_client["dev"].query("SELECT * FROM another_table")
 ```
 
+Or if you want to use it inside a custom Class:
+
+```python
+class CustomClass(MultiClient):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+cc.pg_client["logs"].query("SELECT * FROM some_table")
+cc.pg_client["dev"].query("SELECT * FROM another_table")
+```
+
 ### TODO
 
 - Add a dev branch
