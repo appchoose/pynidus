@@ -93,10 +93,15 @@ class DatabaseClient:
         except:
             raise
             
-        finally:            
-            if conn:
-                cursor.close()
-                conn.close()
+        finally:
+            if as_pandas:            
+                if conn:
+                    conn.close()
+            else:
+                if conn:
+                    cursor.close()
+                    conn.close()
+
     
 class GCSClient:
     
