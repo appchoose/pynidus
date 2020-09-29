@@ -13,7 +13,7 @@ def dependencies():
 
 setuptools.setup(
     name="pynidus",
-    version="0.1.0",
+    version="0.1.1",
     author="Keurcien Luu",
     author_email="keurcien@appchoose.io",
     description="A handful of utilities.",
@@ -32,6 +32,8 @@ setuptools.setup(
         'psycopg2',
         'google-cloud-storage',
         'bugsnag',
-        'dill'
+        'dill',
+        'redis',
+        'pandas'
     ]
 )

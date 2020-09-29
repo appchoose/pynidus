@@ -1,4 +1,5 @@
 import os
+import redis
 from pynidus.clients import ElasticsearchClient, DatabaseClient, GCSClient
 from pynidus.errors import ErrorLogger
 
@@ -54,6 +55,13 @@ class MultiClient:
                     self.gcs_client = {}
 
                 self.gcs_client[name] = GCSClient(**config.get(client))
+
+            elif type_ == "redis":
+                
+                if "redis_client" not in self.__dict__ :
+                    self.redis_client = {}
+
+                self.redis_client[name] = redis.Redis(**config.get(client))
 
                 
         

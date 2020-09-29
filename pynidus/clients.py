@@ -2,6 +2,8 @@ import json
 import pickle
 import elasticsearch
 import psycopg2
+import redis
+import pandas as pd
 from google.cloud.storage import Client
 
 class ElasticsearchClient:
@@ -74,15 +76,19 @@ class DatabaseClient:
     def _connect(self):
         return psycopg2.connect(**self.__dict__)
 
-    def query(self, query_):
+    def query(self, query_, as_pandas=False):
 
         conn = None
 
         try:            
             conn = self._connect()
-            cursor = conn.cursor()
-            cursor.execute(query_)
-            return cursor.fetchall()
+
+            if as_pandas:
+                return pd.read_sql(query_, conn)
+            else:
+                cursor = conn.cursor()
+                cursor.execute(query_)
+                return cursor.fetchall()
         
         except:
             raise
