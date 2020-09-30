@@ -37,28 +37,28 @@ class MultiClient:
 
             if type_ == "pg":
 
-                if "pg_client" not in self.__dict__ :
+                if hasattr(self, "pg_client"):
                     self.pg_client = {}
 
                 self.pg_client[name] = DatabaseClient(**config.get(client))
             
             elif type_ == "es":
 
-                if "es_client" not in self.__dict__ :
+                if hasattr(self, "es_client"):
                     self.es_client = {}
 
                 self.es_client[name] = ElasticsearchClient(**config.get(client))
 
             elif type_ == "gcs":
 
-                if "gcs_client" not in self.__dict__ :
+                if hasattr(self, "gcs_client"):
                     self.gcs_client = {}
 
                 self.gcs_client[name] = GCSClient(**config.get(client))
 
             elif type_ == "redis":
                 
-                if "redis_client" not in self.__dict__ :
+                if hasattr(self, "redis_client"):
                     self.redis_client = {}
 
                 self.redis_client[name] = redis.Redis(**config.get(client))
